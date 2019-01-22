@@ -18,3 +18,4 @@ api.txt
 Gemfile.lock
 Package.resolved
 .env
+.idea

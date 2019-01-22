@@ -42,7 +42,7 @@ public class BotClient {
         
         let promise = worker.eventLoop.newPromise(TelegramContainer<T>.self)
         
-        Log.info("Sending request:\n\(httpRequest.description)")
+        // Log.info("Sending request:\n\(httpRequest.description)")
         
         worker.eventLoop.execute {
             self.send(request: httpRequest).whenSuccess({ (container) in
@@ -65,7 +65,7 @@ public class BotClient {
                     self.client = nil
                 })
                 .do({ (freshClient) in
-                    Log.info("Creating new HTTP Client")
+                    // Log.info("Creating new HTTP Client")
                     self.client = freshClient
                 })
         }
@@ -75,11 +75,11 @@ public class BotClient {
                 Log.error(error.localizedDescription)
             }
             .then { (client) -> Future<HTTPResponse> in
-                Log.info("Sending request to vapor HTTPClient")
+                // Log.info("Sending request to vapor HTTPClient")
                 return client.send(request)
             }
             .map(to: TelegramContainer<T>.self) { (response) -> TelegramContainer<T> in
-                Log.info("Decoding response from HTTPClient")
+                // Log.info("Decoding response from HTTPClient")
                 return try self.decode(response: response)
         }
     }

@@ -56,7 +56,7 @@ public final class Bot {
     
     func wrap<T: Codable>(_ container: TelegramContainer<T>) throws -> Future<T> {
         
-        Log.verbose(logMessage(container))
+        // Log.verbose(logMessage(container))
         
         if let result = container.result {
             return Future.map(on: self.requestWorker, { result })
